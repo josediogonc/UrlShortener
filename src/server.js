@@ -6,8 +6,6 @@ const swaggerUI = require('swagger-ui-express')
 const YAML = require('yamljs')
 const spec = YAML.load("./swagger.yml")
 
-//app.use('/', swaggerUI.serve, swaggerUI.setup(spec))
-
 const { MongoClient } = require('mongodb');
 MongoClient.connect(databaseUrl, { useNewUrlParser: true })
     .then(client => {
@@ -76,3 +74,6 @@ app.set('port', process.env.PORT || 4100);
 const server = app.listen(app.get('port'), () => {
     console.log(`Express running → PORT ${server.address().port}`);
 });
+
+app.use('/', swaggerUI.serve, swaggerUI.setup(spec))
+
