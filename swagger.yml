@@ -1,0 +1,107 @@
+openapi: 3.0.1
+info:
+  title: Url Shortener
+  description: API que faz operações para o encurtamento de URLs
+  version: 0.0.1beta
+tags:
+  - name: encurta
+    description: Encurta uma URL
+  - name: recupera
+    description: Recupera uma ou mais URLs
+paths:
+  /new:
+    post:
+      tags:
+        - encurta
+      summary: Encurta uma nova URL e persiste no banco de dados
+      operationId: shortUrl
+      requestBody:
+        description: URL para ser encurtada
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        200:
+          description: URL encurtada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+  /id/{id}:
+    get:
+      tags:
+        - recupera
+      summary: Recupera uma URL original baseada no seu ID
+      operationId: retrieveById
+      parameters:
+        - name: id
+          in: path
+          description: ID da URL encurtada
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: URL recuperada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  original:
+                    type: string
+  /date/{date}:
+    get:
+      tags:
+        - recupera
+      summary: Recupera uma lista de URLs geradas em determinada data
+      operationId: retrieveByDate
+      parameters:
+      - name: date
+        in: path
+        description: Data da URL encurtada no formato DD-MM-AAAA
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: URLs recuperadas com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  urlList:
+                    type: array
+                    items:
+                      type: string
+
+  /url/{shorted}:
+    get:
+      tags:
+        - recupera
+      summary: Recupera a URL original a partir do nome encurtado
+      operationId: retrieveOriginal
+      parameters:
+      - name: shorted
+        in: path
+        description: URL encurtada
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: URL original recuperada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+  
