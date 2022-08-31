@@ -6,7 +6,7 @@ const swaggerUI = require('swagger-ui-express')
 const YAML = require('yamljs')
 const spec = YAML.load("./swagger.yml")
 
-app.use('/', swaggerUI.serve, swaggerUI.setup(spec))
+//app.use('/', swaggerUI.serve, swaggerUI.setup(spec))
 
 const { MongoClient } = require('mongodb');
 MongoClient.connect(databaseUrl, { useNewUrlParser: true })
