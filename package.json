@@ -4,7 +4,8 @@
   "description": "URL Shortener",
   "main": "src/server.js",
   "scripts": {
-    "start": "npx nodemon src/server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "author": "José Diogo Castro",
   "devDependencies": {
