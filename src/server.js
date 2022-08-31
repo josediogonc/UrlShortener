@@ -2,6 +2,12 @@ const app = require('./app.js')
 const database = require('./database.js')
 const databaseUrl = process.env.DATABASE;
 
+const swaggerUI = require('swagger-ui-express')
+const YAML = require('yamljs')
+const spec = YAML.load("./swagger.yml")
+
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(spec))
+
 const { MongoClient } = require('mongodb');
 MongoClient.connect(databaseUrl, { useNewUrlParser: true })
     .then(client => {

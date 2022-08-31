@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Url Shortener
+  title: URL Shortener
   description: API que faz operações para o encurtamento de URLs
   version: 0.0.1beta
 tags:
