@@ -70,6 +70,20 @@ app.get('/url/:shorted', (req, res) => {
         .catch(console.error);
 });
 
+app.get('/url/all', (req, res) => {
+    const { db } = req.app.locals;
+    database.getAll(db).toArray()
+        .then(doc => {
+            if (doc === null) return res.send('We could not find any URL');
+            var list = []
+            doc.forEach(function(element) {
+                list.push(element.original_url)
+            })
+            res.json({ urls: list});
+        })
+        .catch(console.error);
+});
+
 app.set('port', process.env.PORT || 4100);
 const server = app.listen(app.get('port'), () => {
     console.log(`Express running → PORT ${server.address().port}`);

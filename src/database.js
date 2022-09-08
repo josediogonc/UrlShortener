@@ -30,4 +30,7 @@ const checkIfIdExists = (db, code) => db.collection(COLLECTION_NAME)
 const getAllFromDate = (db, code) => db.collection(COLLECTION_NAME)
     .find({date : code});
 
-module.exports = { shortURL, checkIfIdExists, checkIfShortIdExists, getAllFromDate }
+const getAll = (db) => db.collection(COLLECTION_NAME)
+    .find({});
+
+module.exports = { shortURL, checkIfIdExists, checkIfShortIdExists, getAllFromDate, getAll }
