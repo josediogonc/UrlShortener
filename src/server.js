@@ -70,7 +70,7 @@ app.get('/url/:shorted', (req, res) => {
         .catch(console.error);
 });
 
-app.get('/url/all', (req, res) => {
+app.get('/urls/all', (req, res) => {
     const { db } = req.app.locals;
     database.getAll(db).toArray()
         .then(doc => {
