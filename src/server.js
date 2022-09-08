@@ -77,7 +77,7 @@ app.get('/urls/all', (req, res) => {
             if (doc === null) return res.send('We could not find any URL');
             var list = []
             doc.forEach(function(element) {
-                list.push(element.original_url)
+                list.push(element)
             })
             res.json({ urls: list});
         })
